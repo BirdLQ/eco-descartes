@@ -1,11 +1,11 @@
 <?php
   require 'bddm-inc.php';
 
-  $_SESSION['email'] = $_POST['email'];
-  $_SESSION['mdp'] = $_POST['mdp'];
-
   $email = mysqli_real_escape_string($login_conn, $_POST['email']);
   $mdp = mysqli_real_escape_string($login_conn, $_POST['mdp']);
+
+  $_SESSION['email'] = $email;
+  $_SESSION['mdp'] = $mdp;
 
   if (strlen($email) > 0 and strlen($mdp) > 0) {
     $pos_period = strpos($email, ".");

@@ -110,12 +110,9 @@
 										<label for="ville">ville</label>
 										<select name="ville" id="ville">
 											<?php
-												if (isset($_GET['ville']) and !isset($_SESSION['ville'])) {
+												if (isset($_GET['ville'])) {
 													$v = $_GET['ville'];
 													$_SESSION['ville'] = $v;
-													echo "<option value=$v>$v</option>";
-												} elseif (isset($_SESSION['ville'])) {
-													$v = $_SESSION['ville'];
 													echo "<option value=$v>$v</option>";
 												} else {
 													echo "<option value=''>-</option>
