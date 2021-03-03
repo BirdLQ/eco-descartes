@@ -1,3 +1,8 @@
+<?php
+	require 'bddm-inc.php';
+	session_start();
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -100,25 +105,41 @@
 						<!-- About -->
 							<article id="intro">
 								<h2 class="major">informations</h2>
-								<div class="field">
-									<label for="category">ville</label>
-									<select name="category" id="category">
-										<option value="">-</option>
-										<option value="1">Rabat</option>
-										<option value="1">Témara</option>
-										<option value="1">Salé</option>
-									</select>
-								</div>
+								<form method="GET">
+									<div class="field">
+										<label for="ville">ville</label>
+										<select name="ville" id="ville">
+											<?php
+												if (isset($_GET['ville']) and !isset($_SESSION['ville'])) {
+													$v = $_GET['ville'];
+													$_SESSION['ville'] = $v;
+													echo "<option value=$v>$v</option>";
+												} elseif (isset($_SESSION['ville'])) {
+													$v = $_SESSION['ville'];
+													echo "<option value=$v>$v</option>";
+												} else {
+													echo "<option value=''>-</option>
+													<option value='Rabat'>Rabat</option>
+													<option value='Témara'>Témara</option>
+													<option value='Salé'>Salé</option>";
+												};
+											 ?>
+										</select>
+										<input type="submit" value="définir"/>
+									</div>
+								</form>
 								</br>
-								<div class="field">
-									<label for="category">quartier</label>
-									<select name="category" id="category">
-										<option value="">-</option>
-										<option value="1">----</option>
-										<option value="1">----</option>
-										<option value="1">----</option>
-									</select>
-								</div>
+								<form action="fill-about.php" method="GET">
+									<div class="field">
+										<label for="quartier">quartier</label>
+										<select name="quartier" id="quartier">
+											<?php
+												require_once 'select.php';
+											?>
+										</select>
+										<input type="submit" value="terminer"/>
+									</div>
+								</form>
 								</br>
 								<ul class="actions">
 									<li><a href="#" class="button primary">Continuer</a></li>

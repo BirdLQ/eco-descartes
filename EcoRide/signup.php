@@ -1,5 +1,8 @@
 <?php
-  include_once 'bddm-inc.php';
+  require 'bddm-inc.php';
+
+  $_SESSION['email'] = $_POST['email'];
+  $_SESSION['mdp'] = $_POST['mdp'];
 
   $email = mysqli_real_escape_string($login_conn, $_POST['email']);
   $mdp = mysqli_real_escape_string($login_conn, $_POST['mdp']);
