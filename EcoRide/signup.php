@@ -4,10 +4,8 @@
   $email = mysqli_real_escape_string($login_conn, $_POST['email']);
   $mdp = mysqli_real_escape_string($login_conn, $_POST['mdp']);
 
-  $_SESSION['email'] = $email;
-  $_SESSION['mdp'] = $mdp;
-
   if (strlen($email) > 0 and strlen($mdp) > 0) {
+
     $pos_period = strpos($email, ".");
     $pos_at = strpos($email, "@");
 
@@ -16,6 +14,10 @@
 
     $sql = "INSERT INTO users (email, nom, prenom, mdp) VALUES ('$email', '$nom', '$prenom', '$mdp');";
     mysqli_query($login_conn, $sql);
+
+    session_start();
+    $_SESSION['email'] = $email;
+    $_SESSION['mdp'] = $mdp;
 
     header("Location: index.php?id=#intro");
   } else {

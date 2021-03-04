@@ -11,7 +11,7 @@
     unset($_GET['ville']);
     unset($_SESSION['ville']);
 
-    header("Location: index.php?id=#intro");
+    header("Location: index.php?signup=success");
   } else {
     header("Location: index.php?info_about=failure");
   };

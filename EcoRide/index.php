@@ -1,6 +1,5 @@
 <?php
 	require 'bddm-inc.php';
-	session_start();
 ?>
 
 <!DOCTYPE HTML>
